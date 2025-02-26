@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercicio 3</title>
+</head>
+<body>
+    <script>
+        let number;
+        do {
+            number = prompt("Digite um número inteiro positivo: ");
+            number = Number(number);
+        } while (isNaN(number) || !Number.isInteger(number) || number <= 0);
+
+        let fatorial = 1;
+        for (let i = number; i > 1; i--) {
+            fatorial *= i;
+        }
+
+        alert("O fatorial do seu número é " + fatorial);
+    </script>
+</body>
+</html>

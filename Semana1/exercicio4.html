@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercicio 4</title>
+</head>
+<body>
+    <script language="JavaScript" text="text/JavaScript">
+        let data = prompt("Digite um dado: ");
+        if (!isNaN(data)) {
+            data = Number(data);
+        } else if (data.toLowerCase() == "true" || data.toLowerCase() == "false") {
+            data = true;
+        }
+
+        if(confirm("Deseja ver o tipo do dado? ")) {
+            document.write(typeof(data));
+        } else {
+            document.write("Desconectado.");
+        }
+
+    </script>
+    <p></p>
+</body>
+</html>

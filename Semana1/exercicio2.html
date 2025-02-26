@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercicio 2</title>
+</head>
+<body>
+    <script language="JavaScript" text="text/JavaScript">
+        let number;
+        do{
+            number = prompt("Digite um inteiro positivo: ");
+            number = Number(number);
+        }
+        while(isNaN(number) || !Number.isInteger(number) || number <= 0);
+        let primo;
+        for (let i = 2; i * i <= number; i++) {
+                if (number % i == 0) {
+                    primo = false;
+                    break; 
+                }
+            }
+        number = primo ? "Primo" : "Não primo";
+        alert("Seu número é " + number);
+
+    </script>
+</body>
+</html>
