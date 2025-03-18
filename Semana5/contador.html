@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contador de Pessoas</title>
+</head>
+<body>
+    <div id="app"></div>
+    <script>
+        const app = document.getElementById("app");
+        
+        const container = document.createElement("div");
+        container.style.width = "300px";
+        container.style.margin = "auto";
+        container.style.textAlign = "center";
+        container.style.border = "1px solid black";
+        container.style.padding = "20px";
+        container.style.fontFamily = "Arial"
+        
+        const title = document.createElement("h2");
+        title.innerText = "Total";
+        container.appendChild(title);
+        
+        const totalDisplay = document.createElement("input");
+        totalDisplay.value = "0";
+        totalDisplay.style.width = "50px";
+        totalDisplay.style.textAlign = "center";
+        container.appendChild(totalDisplay);
+        
+        const resetButton = document.createElement("img");
+        resetButton.src = "https://cdn0.iconfinder.com/data/icons/essentials-solid/100/Refresh-512.png";
+        resetButton.style.width = "20px";
+        resetButton.style.marginLeft = "10px";
+        resetButton.onclick = () => {
+            homensCount = 0;
+            mulheresCount = 0;
+            atualizar();
+        };
+        container.appendChild(resetButton);
+        
+        const contadoresContainer = document.createElement("div");
+        contadoresContainer.style.display = "flex";
+        contadoresContainer.style.justifyContent = "space-around";
+        contadoresContainer.style.marginTop = "20px";
+        
+        const homensDiv = document.createElement("div");
+        const homensImg = document.createElement("img");
+        homensImg.src = "https://cdn4.iconfinder.com/data/icons/eldorado-navigation/40/human-512.png";
+        homensImg.style.width = "50px";
+        homensDiv.appendChild(homensImg);
+        
+        const btnMaisHomens = document.createElement("img");
+        btnMaisHomens.src = "https://cdn-icons-png.flaticon.com/128/1828/1828926.png";
+        btnMaisHomens.style.width = "30px";
+        btnMaisHomens.onclick = () => {
+            homensCount++;
+            atualizar();
+        };
+        homensDiv.appendChild(btnMaisHomens);
+        
+        const btnMenosHomens = document.createElement("img");
+        btnMenosHomens.src = "https://cdn-icons-png.flaticon.com/128/1828/1828906.png";
+        btnMenosHomens.style.width = "30px";
+        btnMenosHomens.style.marginLeft = "10px";
+
+        btnMenosHomens.onclick = () => {
+            if (homensCount > 0) homensCount--;
+            atualizar();
+        };
+        homensDiv.appendChild(btnMenosHomens);
+        
+        const homensLabel = document.createElement("p");
+        homensLabel.innerText = "Homens";
+        homensDiv.appendChild(homensLabel);
+        
+        const homensInput = document.createElement("input");
+        homensInput.value = "0";
+        homensInput.readOnly = true;
+        homensInput.style.width = "50px";
+        homensInput.style.textAlign = "center";
+        
+        homensDiv.appendChild(homensInput);
+        
+        const mulheresDiv = document.createElement("div");
+        
+        const mulheresImg = document.createElement("img");
+        mulheresImg.src = "https://cdn4.iconfinder.com/data/icons/eldorado-navigation/40/woman-512.png";
+        mulheresImg.style.width = "50px";
+        mulheresDiv.appendChild(mulheresImg);
+        
+        const btnMaisMulheres = document.createElement("img");
+        btnMaisMulheres.src = "https://cdn-icons-png.flaticon.com/128/1828/1828926.png";
+        btnMaisMulheres.style.width = "30px";
+        btnMaisMulheres.onclick = () => {
+            mulheresCount++;
+            atualizar();
+        };
+        mulheresDiv.appendChild(btnMaisMulheres);
+        
+        const btnMenosMulheres = document.createElement("img");
+        btnMenosMulheres.src = "https://cdn-icons-png.flaticon.com/128/1828/1828906.png";
+        btnMenosMulheres.style.width = "30px";
+        btnMenosMulheres.style.marginLeft = "10px";
+
+        btnMenosMulheres.onclick = () => {
+            if (mulheresCount > 0) mulheresCount--;
+            atualizar();
+        };
+        mulheresDiv.appendChild(btnMenosMulheres);
+        
+        const mulheresLabel = document.createElement("p");
+        mulheresLabel.innerText = "Mulheres";
+        mulheresDiv.appendChild(mulheresLabel);
+        
+        const mulheresInput = document.createElement("input");
+        mulheresInput.value = "0";
+        mulheresInput.style.width = "50px";
+        mulheresInput.style.textAlign = "center";
+        mulheresDiv.appendChild(mulheresInput);
+        
+        contadoresContainer.appendChild(homensDiv);
+        contadoresContainer.appendChild(mulheresDiv);
+        container.appendChild(contadoresContainer);
+        
+        let homensCount = 0;
+        let mulheresCount = 0;
+        
+        function atualizar() {
+            homensInput.value = homensCount;
+            mulheresInput.value = mulheresCount;
+            totalDisplay.value = homensCount + mulheresCount;
+        }
+        
+        app.appendChild(container);
+    </script>
+</body>
+</html>
