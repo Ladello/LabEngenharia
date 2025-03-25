@@ -1,0 +1,113 @@
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora</title>
+</head>
+<body>
+    <div id="app"></div>
+    <script>
+        const app = document.getElementById("app");
+        
+        const container = document.createElement("div");
+        container.style.width = "300px";
+        container.style.margin = "auto";
+        container.style.textAlign = "center";
+        container.style.border = "1px solid black";
+        container.style.padding = "20px";
+        container.style.fontFamily = "Arial";
+        
+        const title = document.createElement("h2");
+        title.innerText = "Calculadora";
+        container.appendChild(title);
+        
+        const calculator = document.createElement("div");
+        calculator.style.display = "grid";
+        calculator.style.gap = "10px";
+        container.appendChild(calculator);
+        
+        const display = document.createElement("div");
+        display.style.gridColumn = "span 4";
+        display.style.height = "60px";
+        display.style.backgroundColor = "#333";
+        display.style.color = "white";
+        display.style.fontSize = "32px";
+        display.style.textAlign = "right";
+        display.style.padding = "10px";
+        display.style.borderRadius = "10px";
+        display.textContent = "0";
+        calculator.appendChild(display);
+        
+        let numeroAtual = "";
+        let numeroAnterior = "";
+        let operador = "";
+        
+        function adicionarNumero(numero) {
+            numeroAtual += numero;
+            display.textContent = numeroAtual;
+        }
+        
+        function definirOperacao(op) {
+            numeroAnterior = numeroAtual;
+            numeroAtual = "";
+            operador = op;
+        }
+        
+        function calcularResultado() {
+            let resultado = eval(numeroAnterior + operador + numeroAtual);
+            display.textContent = resultado;
+            numeroAtual = resultado;
+            numeroAnterior = "";
+            operador = "";
+        
+        }
+        
+        function limpar() {
+            numeroAtual = "";
+            numeroAnterior = "";
+            operador = "";
+            display.textContent = "0";
+        }
+        
+        function criarBotao(texto, cor, funcao) {
+            const botao = document.createElement("button");
+            botao.textContent = texto;
+            botao.style.height = "60px";
+            botao.style.fontSize = "24px";
+            botao.style.border = "none";
+            botao.style.borderRadius = "10px";
+            botao.style.backgroundColor = cor;
+            botao.style.color = "white";
+
+            botao.onclick = funcao;
+            calculator.appendChild(botao);
+            return botao;
+        }
+        
+        const botaoAC = criarBotao("AC", "#333", limpar);
+        const botaoMaisMenos = criarBotao("+/-", "#888", () => {});
+        const botaoPorcentagem = criarBotao("%", "#888", () => {});
+        const botaoDivisao = criarBotao("÷", "#ff9500", () => definirOperacao("/"));
+        
+        const botao7 = criarBotao("7", "#333", () => adicionarNumero("7"));
+        const botao8 = criarBotao("8", "#333", () => adicionarNumero("8"));
+        const botao9 = criarBotao("9", "#333", () => adicionarNumero("9"));
+        const botaoMultiplicacao = criarBotao("×", "#ff9500", () => definirOperacao("*"));
+        
+        const botao4 = criarBotao("4", "#333", () => adicionarNumero("4"));
+        const botao5 = criarBotao("5", "#333", () => adicionarNumero("5"));
+        const botao6 = criarBotao("6", "#333", () => adicionarNumero("6"));
+        const botaoSubtracao = criarBotao("-", "#ff9500", () => definirOperacao("-"));
+        
+        const botao1 = criarBotao("1", "#333", () => adicionarNumero("1"));
+        const botao2 = criarBotao("2", "#333", () => adicionarNumero("2"));
+        const botao3 = criarBotao("3", "#333", () => adicionarNumero("3"));
+        const botaoAdicao = criarBotao("+", "#ff9500", () => definirOperacao("+"));
+        
+        const botao0 = criarBotao("0", "#333", () => adicionarNumero("0"));
+        const botaoPonto = criarBotao(".", "#333", () => adicionarNumero("."));
+        const botaoIgual = criarBotao("=", "#ff9500", calcularResultado);
+        
+        app.appendChild(container);
+    </script>
+</body>
